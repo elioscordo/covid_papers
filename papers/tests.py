@@ -1,22 +1,21 @@
 import datetime
 from django.test import TestCase
 
-# Create your tests here.
-from django.test import TestCase
 from .models import Paper
 
 
 class DateCastTestCase(TestCase):
-    ''' Test the capability of casting the string publish_time into its datefield version publish_date
+    ''' Test the capability of casting the string publish_time
+        into its datefield version publish_date
     '''
 
     def test_valid_date(self):
         paper = Paper.objects.create(publish_time='2001-01-02')
-        self.assertEqual(paper.publish_date, datetime.date(2001,1,2))
+        self.assertEqual(paper.publish_date, datetime.date(2001, 1, 2))
 
     def test_valid_year(self):
         paper = Paper.objects.create(publish_time='2001')
-        self.assertEqual(paper.publish_date, datetime.date(2001,1,1))
+        self.assertEqual(paper.publish_date, datetime.date(2001, 1, 1))
 
     def test_invalid_digit(self):
         paper = Paper.objects.create(publish_time='5')
